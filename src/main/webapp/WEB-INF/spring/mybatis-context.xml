@@ -25,7 +25,7 @@
 	</bean>
 
 	<!-- 전송 후 결과처리 -->
-	<bean class="org.mybatis.spring.SqlSessionTemplate">
+	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean"></constructor-arg>
 	</bean>
 </beans>
