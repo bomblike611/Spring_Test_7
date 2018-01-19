@@ -40,15 +40,8 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public ModelAndView selectOne(int num) throws Exception {
-		ModelAndView mv=new ModelAndView();
-		BoardDTO boardDTO=noticeDAO.selectOne(num);
-		List<FileDTO> ar=fileDAO.selectList(num);
-		mv.addObject("file", ar);
-		mv.addObject("view",boardDTO);
-		mv.addObject("board", "notice");
-		mv.setViewName("board/boardView");
-		return mv;
+	public BoardDTO selectOne(int num) throws Exception {
+		return noticeDAO.selectOne(num);
 	}
 
 	@Override

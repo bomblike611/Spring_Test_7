@@ -28,8 +28,12 @@ public class NoticeController {
 	
 	@RequestMapping(value="noticeView")
 	public ModelAndView selectOne(int num) throws Exception{
-		
-		return noticeService.selectOne(num);
+		ModelAndView mv=new ModelAndView();
+		BoardDTO boardDTO=noticeService.selectOne(num);
+		mv.addObject("view", boardDTO);
+		mv.addObject("board", "notice");
+		mv.setViewName("board/boardView");
+		return mv;
 	}
 	
 	@RequestMapping(value="noticeList")

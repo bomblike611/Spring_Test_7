@@ -30,8 +30,12 @@ public class QnaController {
 	
 	@RequestMapping(value="qnaView")
 	public ModelAndView selectOne(int num) throws Exception{
-		
-		return qnaService.selectOne(num);
+		ModelAndView mv=new ModelAndView();
+		QnaDTO qnaDTO=(QnaDTO)qnaService.selectOne(num);
+		mv.addObject("view", qnaDTO);
+		mv.addObject("board", "qna");
+		mv.setViewName("board/boardView");
+		return mv;
 	}
 	
 	

@@ -39,6 +39,16 @@
   select * from qna where num=#{num}
   </select>
   
+  <resultMap type="QnaDTO" id="QnaResult">
+  <id property="num" column="num"/>
+  	<collection property="files" ofType="FileDTO" javaType="ArrayList">
+  		<id property="fnum" column="fnum"/>
+  		<result property="fname" column="fname"/>
+  		<result property="num" column="num"/>
+  		<result property="oname" column="oname"/>
+  	</collection>
+  </resultMap>
+  
   <delete id="delete" parameterType="int">
   delete qna where num=#{num}
   </delete>

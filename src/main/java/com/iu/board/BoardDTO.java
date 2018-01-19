@@ -1,5 +1,6 @@
 package com.iu.board;
 
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class BoardDTO {

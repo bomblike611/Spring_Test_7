@@ -12,7 +12,7 @@
 <h1>${view.title }</h1>
 <h1>${view.writer }</h1>
 <h1>${view.contents }</h1>
-<c:forEach items="${file}" var="f" >
+<c:forEach items="${view.files}" var="f" >
 <a href="../resources/upload/${f.fname}">${f.oname}</a>
 </c:forEach>
 </body>

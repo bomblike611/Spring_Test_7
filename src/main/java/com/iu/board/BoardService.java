@@ -14,7 +14,7 @@ public interface BoardService {
 	//lsit
 	public List<BoardDTO> selectList(ListData listData) throws Exception;
 	//One
-	public ModelAndView selectOne(int num) throws Exception;
+	public BoardDTO selectOne(int num) throws Exception;
 	//insert
 	public int insert(BoardDTO boardDTO,MultipartFile [] file,HttpSession session) throws Exception;
 	//update

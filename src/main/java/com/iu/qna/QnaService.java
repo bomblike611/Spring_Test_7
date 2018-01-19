@@ -38,15 +38,9 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public ModelAndView selectOne(int num) throws Exception {
-		ModelAndView mv=new ModelAndView();
-		BoardDTO boardDTO=qnaDAO.selectOne(num);
-		List<FileDTO> ar=fileDAO.selectList(num);
-		mv.addObject("file", ar);
-		mv.addObject("view",boardDTO);
-		mv.addObject("board", "qna");
-		mv.setViewName("board/boardView");
-		return mv;
+	public BoardDTO selectOne(int num) throws Exception {
+		
+		return qnaDAO.selectOne(num);
 	}
 
 	@Override
