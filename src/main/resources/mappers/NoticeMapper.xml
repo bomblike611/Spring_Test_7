@@ -28,8 +28,9 @@
   	</if>
   </select>
   
+  <!-- 아우터 조인 -->
   <select id="selectOne" parameterType="int" resultMap="NoticeResult2">
-  select n.*,f.* from notice n,files f where n.num=#{num} and n.num=f.num
+  select n.*,f.* from notice n,files f where n.num=#{num} and n.num=f.num(+)
   </select>
   
   <resultMap type="NoticeDTO" id="NoticeResult2">

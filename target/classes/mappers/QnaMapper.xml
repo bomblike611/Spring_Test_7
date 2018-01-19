@@ -36,11 +36,19 @@
   </select>
   
   <select id="selectOne" parameterType="int" resultType="QnaDTO">
-  select * from qna where num=#{num}
+    select q.*,f.* from qna q,files f where q.num=#{num} and q.num=f.num
   </select>
   
   <resultMap type="QnaDTO" id="QnaResult">
   <id property="num" column="num"/>
+  <result property="writer" column="writer"/>
+  	<result property="title" column="title"/>
+  	<result property="contents" column="contents"/>
+  	<result property="reg_date" column="reg_date"/>
+  	<result property="hit" column="hit"/>
+  	<result property="ref" column="ref"/>
+  	<result property="step" column="step"/>
+  	<result property="depth" column="depth"/>
   	<collection property="files" ofType="FileDTO" javaType="ArrayList">
   		<id property="fnum" column="fnum"/>
   		<result property="fname" column="fname"/>
