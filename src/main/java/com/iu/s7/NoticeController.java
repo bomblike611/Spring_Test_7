@@ -46,7 +46,7 @@ public class NoticeController {
 		}
 		
 		
-		int result=noticeService.insert(noticeDTO);
+		int result=noticeService.insert(noticeDTO,file,session);
 		if(result>0){
 		mv.addObject("message", "Success");
 		}else{

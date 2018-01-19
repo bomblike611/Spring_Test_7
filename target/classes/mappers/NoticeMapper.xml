@@ -23,12 +23,16 @@
   </select>
   
   <insert id="insert" parameterType="NoticeDTO">
-  	insert into notice values(board_seq.nextval,#{title},#{writer},#{contents},sysdate,0)
+  	insert into notice values(#{num},#{title},#{writer},#{contents},sysdate,0)
   </insert>
   
   <delete id="delete" parameterType="int">
   delete notice where num=#{num}
   </delete>
+  
+  <select id="selectNum" resultType="int">
+  	select board_seq.nextval from dual
+  </select>
   
   <update id="update" parameterType="NoticeDTO">
   	update notice set title=#{title},contents=#{contents} where num=#{num}

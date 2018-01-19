@@ -60,6 +60,7 @@ display: none;}
 
 </style>
 </head>
+
 <body>
 <h1>${board }Write</h1>
 
@@ -70,10 +71,10 @@ display: none;}
 <p><input type="button" value="fileadd" id="add"></p>
 <div id="result">
 </div>
+<button>Write</button>
+</form>
 <div id="ex">
 <p><input type="file" name="file"><span class="X">X</span></p>
 </div>
-<button>Write</button>
-</form>
 </body>
 </html>
