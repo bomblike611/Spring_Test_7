@@ -1,6 +1,7 @@
 package com.iu.s7;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.iu.board.BoardDTO;
+import com.iu.file.FileDTO;
 import com.iu.notice.NoticeDTO;
 import com.iu.qna.QnaDTO;
 import com.iu.qna.QnaService;
@@ -25,6 +27,13 @@ public class QnaController {
 	
 	@Inject
 	private QnaService qnaService;
+	
+	@RequestMapping(value="qnaView")
+	public ModelAndView selectOne(int num) throws Exception{
+		
+		return qnaService.selectOne(num);
+	}
+	
 	
 	@RequestMapping(value="qnaList")
 	public ModelAndView selectList(ListData listData) throws Exception{

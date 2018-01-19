@@ -1,12 +1,15 @@
 package com.iu.notice;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.board.BoardDTO;
 import com.iu.board.BoardService;
@@ -25,10 +28,6 @@ public class NoticeService implements BoardService {
 	public void setNoticeDAO(NoticeDAO noticeDAO) {
 		this.noticeDAO = noticeDAO;
 	}
-
-	public void selectOne() throws Exception{
-		
-	}
 	
 	
 	@Override
@@ -41,9 +40,15 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public BoardDTO selectOne(int num) throws Exception {
-		// TODO Auto-generated method stub
-		return noticeDAO.selectOne(num);
+	public ModelAndView selectOne(int num) throws Exception {
+		ModelAndView mv=new ModelAndView();
+		BoardDTO boardDTO=noticeDAO.selectOne(num);
+		List<FileDTO> ar=fileDAO.selectList(num);
+		mv.addObject("file", ar);
+		mv.addObject("view",boardDTO);
+		mv.addObject("board", "notice");
+		mv.setViewName("board/boardView");
+		return mv;
 	}
 
 	@Override

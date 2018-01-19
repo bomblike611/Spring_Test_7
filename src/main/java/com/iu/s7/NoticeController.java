@@ -1,6 +1,7 @@
 package com.iu.s7;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.w3c.dom.ls.LSException;
 
 import com.iu.board.BoardDTO;
+import com.iu.file.FileDTO;
 import com.iu.notice.NoticeDTO;
 import com.iu.notice.NoticeService;
 import com.iu.util.ListData;
@@ -25,8 +27,9 @@ public class NoticeController {
 	private NoticeService noticeService;
 	
 	@RequestMapping(value="noticeView")
-	public void selectOne(int num) throws Exception{
+	public ModelAndView selectOne(int num) throws Exception{
 		
+		return noticeService.selectOne(num);
 	}
 	
 	@RequestMapping(value="noticeList")
@@ -67,5 +70,6 @@ public class NoticeController {
 		model.addAttribute("board", "notice");
 		return "board/boardWrite";
 	}
+	
 	
 }

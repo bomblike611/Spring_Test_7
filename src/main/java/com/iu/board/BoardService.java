@@ -1,10 +1,12 @@
 package com.iu.board;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.util.ListData;
 
@@ -12,7 +14,7 @@ public interface BoardService {
 	//lsit
 	public List<BoardDTO> selectList(ListData listData) throws Exception;
 	//One
-	public BoardDTO selectOne(int num) throws Exception;
+	public ModelAndView selectOne(int num) throws Exception;
 	//insert
 	public int insert(BoardDTO boardDTO,MultipartFile [] file,HttpSession session) throws Exception;
 	//update
