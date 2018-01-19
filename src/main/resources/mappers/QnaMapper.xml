@@ -35,7 +35,7 @@
   where R between #{startRow} and #{lastRow} order by ref desc, step asc
   </select>
   
-  <select id="selectOne" parameterType="int" resultType="QnaDTO">
+  <select id="selectOne" parameterType="int" resultMap="QnaResult">
     select q.*,f.* from qna q,files f where q.num=#{num} and q.num=f.num
   </select>
   
