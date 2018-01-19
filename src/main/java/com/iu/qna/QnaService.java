@@ -1,7 +1,9 @@
 package com.iu.qna;
 
+import java.io.File;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.board.BoardDTO;
 import com.iu.board.BoardService;
+import com.iu.file.FileDAO;
+import com.iu.file.FileDTO;
+import com.iu.util.FileSaver;
 import com.iu.util.ListData;
 import com.iu.util.PageMaker;
 
@@ -18,6 +23,8 @@ public class QnaService implements BoardService {
 	
 	@Autowired
 	private QnaDAO qnaDAO;
+	@Inject
+	private FileDAO fileDAO;
 
 	@Override
 	public List<BoardDTO> selectList(ListData listData) throws Exception {
@@ -35,8 +42,25 @@ public class QnaService implements BoardService {
 
 	@Override
 	public int insert(BoardDTO boardDTO,MultipartFile[] file,HttpSession session) throws Exception {
-		// TODO Auto-generated method stub
-		return qnaDAO.insert(boardDTO);
+		int result=qnaDAO.insert(boardDTO);
+		FileSaver fileSaver = new FileSaver();
+		String filepath = session.getServletContext().getRealPath("resources/upload");
+		System.out.println(filepath);
+		File f = new File(filepath);
+		if(!f.exists()){
+			f.mkdirs();
+		}
+		
+		List<String> names=fileSaver.saver(file, filepath);
+		for(int i=0;i<names.size();i++){
+			FileDTO fileDTO=new FileDTO();
+			fileDTO.setNum(boardDTO.getNum());
+			fileDTO.setFname(names.get(i));
+			fileDTO.setOname(file[i].getOriginalFilename());
+			fileDAO.insert(fileDTO);
+			System.out.println(names.get(i));
+		}
+		return result;
 	}
 
 	@Override

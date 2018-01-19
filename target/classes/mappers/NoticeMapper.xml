@@ -23,6 +23,9 @@
   </select>
   
   <insert id="insert" parameterType="NoticeDTO">
+  	<selectKey resultType="int" order="BEFORE" keyProperty="num">
+  		select board_seq.nextval from dual
+  	</selectKey>
   	insert into notice values(#{num},#{title},#{writer},#{contents},sysdate,0)
   </insert>
   
@@ -30,9 +33,7 @@
   delete notice where num=#{num}
   </delete>
   
-  <select id="selectNum" resultType="int">
-  	select board_seq.nextval from dual
-  </select>
+
   
   <update id="update" parameterType="NoticeDTO">
   	update notice set title=#{title},contents=#{contents} where num=#{num}

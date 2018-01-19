@@ -24,6 +24,11 @@ public class NoticeController {
 	@Inject
 	private NoticeService noticeService;
 	
+	@RequestMapping(value="noticeView")
+	public void selectOne(int num) throws Exception{
+		
+	}
+	
 	@RequestMapping(value="noticeList")
 	public ModelAndView selectList(ListData listData) throws Exception{
 		/*System.out.println("search:"+listData.getSearch());

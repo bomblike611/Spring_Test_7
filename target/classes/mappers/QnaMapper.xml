@@ -52,7 +52,10 @@
   </update>
   
   <insert id="insert" parameterType="QnaDTO">
-  insert into qna values(qna_seq.nextval,#{title},#{contents},#{writer},0,sysdate,qna_seq.currval,0,0)
+  <selectKey resultType="int" order="BEFORE" keyProperty="num">
+  select qna_seq.nextval from dual
+  </selectKey>
+  insert into qna values(#{num},#{title},#{contents},#{writer},0,sysdate,qna_seq.currval,0,0)
   </insert>
   
   <insert id="replyInsert" parameterType="Map">

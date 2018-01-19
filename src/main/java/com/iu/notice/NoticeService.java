@@ -26,6 +26,11 @@ public class NoticeService implements BoardService {
 		this.noticeDAO = noticeDAO;
 	}
 
+	public void selectOne() throws Exception{
+		
+	}
+	
+	
 	@Override
 	public List<BoardDTO> selectList(ListData listData) throws Exception {
 		int totalCount=noticeDAO.totalCount(listData);
@@ -43,6 +48,7 @@ public class NoticeService implements BoardService {
 
 	@Override
 	public int insert(BoardDTO boardDTO, MultipartFile [] file, HttpSession session) throws Exception {
+		int a=noticeDAO.insert(boardDTO);
 		FileSaver fileSaver = new FileSaver();
 		String filepath = session.getServletContext().getRealPath("resources/upload");
 		System.out.println(filepath);
@@ -50,19 +56,17 @@ public class NoticeService implements BoardService {
 		if(!f.exists()){
 			f.mkdirs();
 		}
-		int num=noticeDAO.getNum();
-		boardDTO.setNum(num);
 		
 		List<String> names=fileSaver.saver(file, filepath);
 		for(int i=0;i<names.size();i++){
 			FileDTO fileDTO=new FileDTO();
-			fileDTO.setNum(num);
+			fileDTO.setNum(boardDTO.getNum());
 			fileDTO.setFname(names.get(i));
 			fileDTO.setOname(file[i].getOriginalFilename());
 			fileDAO.insert(fileDTO);
 			System.out.println(names.get(i));
 		}
-		return noticeDAO.insert(boardDTO);
+		return a;
 	}
 
 
