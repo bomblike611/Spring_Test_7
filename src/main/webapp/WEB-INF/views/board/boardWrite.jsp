@@ -14,13 +14,17 @@ $(function(){
 		if(i<5){
 		$("#result").append(ex);
 		i++;
+		}else{
+			alert("최대 5개까지만 가능합니다");
 		}
 	});
-	
+	//위임이 필요하기때문에 on을 사용하여 위임해줌
 	$("#result").on("click",".X",function(){
+		if(i>0){
 		$(this).prev().remove();
 		$(this).remove();
 		i--;
+		}
 	});
 	
 	/* var index=0;
@@ -42,12 +46,18 @@ $(function(){
 	}); */
 
 	
-});
+}); 
 </script>
+
+
 <style type="text/css">
 .X{
 cursor: pointer;
 }
+
+#ex{
+display: none;}
+
 </style>
 </head>
 <body>
@@ -61,7 +71,7 @@ cursor: pointer;
 <div id="result">
 </div>
 <div id="ex">
-<input type="file" name="file"><span class="X">X</span>
+<p><input type="file" name="file"><span class="X">X</span></p>
 </div>
 <button>Write</button>
 </form>
