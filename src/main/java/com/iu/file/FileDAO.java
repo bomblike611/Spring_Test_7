@@ -22,4 +22,13 @@ public class FileDAO {
 	public List<FileDTO> selectList(int num) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"FileList", num);
 	}
+	
+	public int delete(int num) throws Exception{
+		return sqlSession.delete(NAMESPACE+"Delete", num);
+	}
+	
+	public int filedelete(int fnum) throws Exception{
+		return sqlSession.delete(NAMESPACE+"FileDelete", fnum);
+	}
+	
 }

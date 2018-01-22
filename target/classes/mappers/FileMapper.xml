@@ -12,4 +12,13 @@
  	<select id="FileList" parameterType="int" resultType="FileDTO">
  	select * from files where num=#{num}
  	</select>
+ 	
+ 	<delete id="Delete" parameterType="int">
+ 	delete files where num=#{num}
+ 	</delete>
+ 	
+ 		<delete id="FileDelete" parameterType="int">
+ 	delete files where fnum=#{num}
+ 	</delete>
+ 	
   </mapper>

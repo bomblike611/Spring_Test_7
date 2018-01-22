@@ -31,7 +31,15 @@ public class FileSaver {
 		file.transferTo(f);
 		return fileName;
 	}
-	
+	public void fileDelete(String filepath,String fileName) throws Exception{
+		try{
+		File file=new File(filepath, fileName);
+		file.delete();
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
 
 	
 	

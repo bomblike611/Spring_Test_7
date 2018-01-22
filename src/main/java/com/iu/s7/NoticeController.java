@@ -74,6 +74,41 @@ public class NoticeController {
 		model.addAttribute("board", "notice");
 		return "board/boardWrite";
 	}
+	@RequestMapping(value="noticeDelete")
+	public ModelAndView noticeDelete(int num,HttpSession session) throws Exception{
+		ModelAndView mv=new ModelAndView();
+		String s="Fail";
+		int result=noticeService.delete(num, session);
+		if(result>0){
+			s="Success";
+		}
+		mv.addObject("message", s);
+		mv.addObject("path", "noticeList");
+		mv.setViewName("common/result");
+		return mv;
+	}
 	
+	@RequestMapping(value="noticeUpdate",method=RequestMethod.GET)
+	public String noticeUpdate(int num,Model model) throws Exception{
+		BoardDTO boardDTO=noticeService.selectOne(num);
+		model.addAttribute("board", "notice");
+		model.addAttribute("nupdate", boardDTO);
+		return "board/boardUpdate";
+	}
+	
+	@RequestMapping(value="noticeUpdate",method=RequestMethod.POST)
+	public ModelAndView noticeUpdate(NoticeDTO noticeDTO,MultipartFile [] file,HttpSession session) throws Exception{
+		ModelAndView mv=new ModelAndView();
+		int result=noticeService.update(noticeDTO, session, file);
+		String s="Fail";
+		if(result>0){
+			s="Success";
+		}
+		mv.addObject("message", s);
+		mv.addObject("path", "noticeView?num="+noticeDTO.getNum());
+		mv.setViewName("common/result");
+		return mv;
+		
+	}
 	
 }
