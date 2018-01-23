@@ -65,16 +65,36 @@ public class QnaService implements BoardService {
 		}
 		return result;
 	}
-
 	@Override
-	public int update(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
+	public int update(BoardDTO boardDTO,HttpSession session,MultipartFile [] file) throws Exception {
+		FileSaver fileSaver = new FileSaver();
+		String filepath = session.getServletContext().getRealPath("resources/upload");
+		File f = new File(filepath);
+		if(!f.exists()){
+			f.mkdirs();
+		}
+		
+		List<String> names=fileSaver.saver(file, filepath);
+		for(int i=0;i<names.size();i++){
+			FileDTO fileDTO=new FileDTO();
+			fileDTO.setNum(boardDTO.getNum());
+			fileDTO.setFname(names.get(i));
+			fileDTO.setOname(file[i].getOriginalFilename());
+			fileDAO.insert(fileDTO);
+			System.out.println(names.get(i));
+		}
 		return qnaDAO.update(boardDTO);
 	}
 
 	@Override
-	public int delete(int num) throws Exception {
-		// TODO Auto-generated method stub
+	public int delete(int num,HttpSession session) throws Exception {
+		List<FileDTO> ar=fileDAO.selectList(num);
+		String filepath = session.getServletContext().getRealPath("resources/upload");
+		FileSaver fileSaver=new FileSaver();
+		for(FileDTO fileDTO: ar){
+		fileSaver.fileDelete(filepath, fileDTO.getFname());
+		}
+		int result=fileDAO.delete(num);
 		return qnaDAO.delete(num);
 	}
 	

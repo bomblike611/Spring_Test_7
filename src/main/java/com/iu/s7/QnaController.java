@@ -68,6 +68,41 @@ public class QnaController {
 		model.addAttribute("board", "qna");
 		return "board/boardWrite";
 	}
+	@RequestMapping(value="qnaDelete")
+	public ModelAndView noticeDelete(int num,HttpSession session) throws Exception{
+		ModelAndView mv=new ModelAndView();
+		String s="Fail";
+		int result=qnaService.delete(num, session);
+		if(result>0){
+			s="Success";
+		}
+		mv.addObject("message", s);
+		mv.addObject("path", "qnaList");
+		mv.setViewName("common/result");
+		return mv;
+	}
 	
+	@RequestMapping(value="qnaUpdate",method=RequestMethod.GET)
+	public String noticeUpdate(int num,Model model) throws Exception{
+		BoardDTO boardDTO=qnaService.selectOne(num);
+		model.addAttribute("board", "qna");
+		model.addAttribute("nupdate", boardDTO);
+		return "board/boardUpdate";
+	}
+	
+	@RequestMapping(value="qnaUpdate",method=RequestMethod.POST)
+	public ModelAndView noticeUpdate(NoticeDTO noticeDTO,MultipartFile [] file,HttpSession session) throws Exception{
+		ModelAndView mv=new ModelAndView();
+		int result=qnaService.update(noticeDTO, session, file);
+		String s="Fail";
+		if(result>0){
+			s="Success";
+		}
+		mv.addObject("message", s);
+		mv.addObject("path", "qnaView?num="+noticeDTO.getNum());
+		mv.setViewName("common/result");
+		return mv;
+		
+	}
 	
 }
