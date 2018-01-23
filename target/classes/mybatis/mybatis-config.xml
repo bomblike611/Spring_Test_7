@@ -11,5 +11,6 @@
   <typeAlias type="com.iu.util.ListData" alias="ListData"/>
   <typeAlias type="com.iu.file.FileDTO" alias="FileDTO"/>
   <typeAlias type="java.util.ArrayList" alias="ArrayList"/>
+  <typeAlias type="com.iu.member.MemberDTO" alias="MemberDTO"/>
   </typeAliases>
   </configuration>
