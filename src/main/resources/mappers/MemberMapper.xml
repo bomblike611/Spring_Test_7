@@ -21,7 +21,7 @@
   delete member where id=#{id}
   </delete>
   
-  <select id="idcheck" resultType="MemberDTO">
+  <select id="idcheck" resultType="java.lang.String" parameterType="java.lang.String">
   select id from member where id=#{id}
   </select>
   

@@ -5,11 +5,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#id").keyup(function(){
+		var idvalue=$("#id").val();
+		$.get("./memberIdCheck?id="+idvalue,function(data){
+			$("#idcheck").html(data);
+		});
+	});
+});
+</script>
 </head>
 <body>
 <h1>Member Join</h1>
 <form action="memberJoin" method="post" enctype="multipart/form-data">
-<p>ID : <input type="text" name="id"></p>
+<p>ID : <input type="text" name="id" id="id"><span id="idcheck"></span></p>
 <p>PW : <input type="text" name="pw"></p>
 <p>NAME : <input type="text" name="name"></p>
 <p>EMAIL : <input type="email" name="email"></p>

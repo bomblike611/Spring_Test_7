@@ -30,10 +30,27 @@ public class MemberService {
 		return memberDAO.memberJoin(memberDTO);
 	}
 	
-	public int memberUpdate(MemberDTO memberDTO) throws Exception{
+	public int memberUpdate(MemberDTO memberDTO,MultipartFile file,HttpSession session,String check) throws Exception{
+		FileSaver fileSaver = new FileSaver();
+		String filepath = session.getServletContext().getRealPath("resources/upload");
+		if(check.equals("true")){
+		File f2=new File(filepath, memberDTO.getFname());
+		f2.delete();
+		File f = new File(filepath);
+		if(!f.exists()){
+			f.mkdirs();
+		}
+		String fileName=fileSaver.saver(file, filepath);
+		memberDTO.setFname(fileName);
+		memberDTO.setOname(file.getOriginalFilename());
+		}
 		return memberDAO.memberUpdate(memberDTO);
 	}
-	public int memberDelete(MemberDTO memberDTO) throws Exception{
+	public int memberDelete(MemberDTO memberDTO,HttpSession session) throws Exception{
+		String filepath = session.getServletContext().getRealPath("resources/upload");
+		FileSaver fileSaver=new FileSaver();
+		fileSaver.fileDelete(filepath, memberDTO.getFname());
+		
 		return memberDAO.memberDelete(memberDTO);
 	}
 	public MemberDTO memberLogin(MemberDTO memberDTO) throws Exception{
@@ -42,4 +59,5 @@ public class MemberService {
 	public String memberidcheck(String id) throws Exception{
 		return memberDAO.memberidcheck(id);
 	}
+	
 }

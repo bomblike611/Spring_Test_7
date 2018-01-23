@@ -7,7 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="./memberUpdate?id=${view.id}">Update</a>
-<a href="./memberDelete?id=${view.id}">Delete</a>
+<h1>MemberView</h1>
+<img src="../resources/upload/${member.fname}">
+<p>id :${member.id}</p>
+<p>name :${member.name }</p>
+<p>email :${member.email }</p>
+<p>job :${member.job }</p>
+<a href="./memberUpdate">Update</a>
+<a href="./memberDelete">Delete</a>
 </body>
 </html>
