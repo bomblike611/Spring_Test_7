@@ -33,6 +33,7 @@ $("#f").click(function(){
 <h1>Member Update</h1>
 <form action="memberUpdate" method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" value="${member.id }">
+<input type="hidden" name="job" value="${member.job }">
 <p>PW : <input type="text" name="pw" value="${member.pw }"></p>
 <p>NAME : <input type="text" name="name" value="${member.name }"></p>
 <p>EMAIL : <input type="email" name="email" value="${member.email }"></p>

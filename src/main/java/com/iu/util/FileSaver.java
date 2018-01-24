@@ -22,6 +22,8 @@ public class FileSaver {
 	public String saver(MultipartFile file, String filepath)throws Exception{
 		//1. 저장할 파일명 생성
 		//iu.jpg
+		
+
 		String fileName= file.getOriginalFilename();
 		fileName=fileName.substring(fileName.lastIndexOf("."));
 		fileName=UUID.randomUUID().toString()+fileName;
@@ -29,6 +31,8 @@ public class FileSaver {
 		File f = new File(filepath, fileName);
 		//FileCopyUtils.copy(file.getBytes(), f);
 		file.transferTo(f);
+		
+		
 		return fileName;
 	}
 	public void fileDelete(String filepath,String fileName) throws Exception{

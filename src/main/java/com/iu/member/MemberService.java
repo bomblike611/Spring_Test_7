@@ -40,9 +40,15 @@ public class MemberService {
 		if(!f.exists()){
 			f.mkdirs();
 		}
-		String fileName=fileSaver.saver(file, filepath);
+		String fileName="null";
+		if(file!=null){
+				fileName=fileSaver.saver(file, filepath);
 		memberDTO.setFname(fileName);
 		memberDTO.setOname(file.getOriginalFilename());
+		}else{
+			memberDTO.setFname(fileName);
+			memberDTO.setOname("null");
+		}
 		}
 		return memberDAO.memberUpdate(memberDTO);
 	}

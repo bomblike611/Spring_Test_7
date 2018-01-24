@@ -50,11 +50,11 @@ public class MemberController {
 	
 	@RequestMapping(value="memberDelete")
 	public String memberDelete(MemberDTO memberDTO,HttpSession session,RedirectAttributes ra) throws Exception{
-		session.invalidate();
 		ModelAndView mv=new ModelAndView();
 		int result=memberService.memberDelete(memberDTO,session);
 		String s="fail";
 		if(result>0){
+			session.invalidate();
 			s="Success";
 		}
 		ra.addAttribute("message", s);

@@ -14,6 +14,6 @@
 <p>email :${member.email }</p>
 <p>job :${member.job }</p>
 <a href="./memberUpdate">Update</a>
-<a href="./memberDelete">Delete</a>
+<a href="./memberDelete?id=${member.id}&fname=${member.fname}">Delete</a>
 </body>
 </html>
