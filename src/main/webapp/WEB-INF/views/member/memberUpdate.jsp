@@ -14,14 +14,15 @@ $("#f").click(function(){
 	if(check){
 	$(this).prev().remove();
 	$(this).remove();
-	$("#check").val("true");
+	
 	i--;
 	}
 });
 	
 	$("#btn").click(function(){
 		if(i<1){
-			$("#file").html('<input type="file" name="file">');
+			$("#check").val("true");
+			$("#file").html( );
 		}else{
 			alert("파일은 한개만 업로드 가능합니다.");
 		}
