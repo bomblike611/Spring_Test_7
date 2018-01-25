@@ -14,7 +14,11 @@
   </insert>
   
   <update id="update" parameterType="MemberDTO">
-  update member set pw=#{pw},name=#{name},email=#{email},phone=#{phone},age=#{age},fname=#{fname},oname=#{oname} where id=#{id}
+  update member <set> pw=#{pw},name=#{name},email=#{email},phone=#{phone},age=#{age},
+  <!-- <if test="fname != null"> -->
+  fname=#{fname},oname=#{oname}
+<!--   </if> -->
+  </set> where id=#{id}
   </update>
   
   <delete id="delete" parameterType="MemberDTO">

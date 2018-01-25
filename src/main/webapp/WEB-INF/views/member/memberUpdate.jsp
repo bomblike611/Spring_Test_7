@@ -22,9 +22,18 @@ $("#f").click(function(){
 	$("#btn").click(function(){
 		if(i<1){
 			$("#check").val("true");
-			$("#file").html( );
+			$("#file").html('<input type="file" name="file" id="w">');
 		}else{
 			alert("파일은 한개만 업로드 가능합니다.");
+		}
+	});
+	
+	$("#btn2").click(function(){
+		var w=$("#w").val();
+		if(w!=""){
+			document.frm.submit();
+		}else{
+			alert("파일을 추가해주세여");
 		}
 	});
 });
@@ -32,7 +41,7 @@ $("#f").click(function(){
 </head>
 <body>
 <h1>Member Update</h1>
-<form action="memberUpdate" method="post" enctype="multipart/form-data">
+<form action="memberUpdate" name="frm" method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" value="${member.id }">
 <input type="hidden" name="job" value="${member.job }">
 <p>PW : <input type="text" name="pw" value="${member.pw }"></p>
@@ -45,7 +54,7 @@ $("#f").click(function(){
 <input type="button" id="btn" value="fileadd">
 <p id="file"><input type="text" value="${member.oname}" disabled="disabled"><span id="f">X</span></p>
 <p><input type="hidden" id="check" name="check" value="false"></p>
-<button>Join</button>
+<input type="button" id="btn2" value="Update">
 </form>
 </body>
 </html>

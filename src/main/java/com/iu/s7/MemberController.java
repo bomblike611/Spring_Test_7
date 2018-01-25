@@ -68,6 +68,7 @@ public class MemberController {
 	@RequestMapping(value="memberUpdate",method=RequestMethod.POST)
 	public ModelAndView memberUpdate(MemberDTO memberDTO,HttpSession session,MultipartFile file,String check) throws Exception{
 		ModelAndView mv=new ModelAndView();
+		System.out.println("file"+file);
 		int result=memberService.memberUpdate(memberDTO,file,session,check);
 		String s="Fail";
 		if(result>0){
