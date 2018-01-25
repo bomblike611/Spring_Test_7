@@ -34,5 +34,7 @@
 <a href="./member/memberView">Mypage</a>
 <a href="./member/memberLogout">Logout</a>
 </c:if>
+
+<a href="./transfer">Transfer</a>
 </body>
 </html>
