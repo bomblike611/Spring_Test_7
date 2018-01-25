@@ -48,4 +48,9 @@ public class FileController {
 		return "common/fileResult";
 	}
 	
+	@RequestMapping(value="seUpload")
+	public void seUpload(){
+		System.out.println("seeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+	}
+	
 }

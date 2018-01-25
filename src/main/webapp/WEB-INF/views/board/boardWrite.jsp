@@ -6,8 +6,32 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="../resources/SE2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
 $(function(){
+	 //전역변수
+    var obj = [];              
+    //스마트에디터 프레임생성
+    nhn.husky.EZCreator.createInIFrame({
+        oAppRef: obj,
+        elPlaceHolder: "contents",
+        sSkinURI: "../resources/SE2/SmartEditor2Skin.html",
+        htParams : {
+            // 툴바 사용 여부
+            bUseToolbar : true,            
+            // 입력창 크기 조절바 사용 여부
+            bUseVerticalResizer : true,    
+            // 모드 탭(Editor | HTML | TEXT) 사용 여부
+            bUseModeChanger : true,
+        }
+    });
+    //전송버튼
+    $("#insertBoard").click(function(){
+        //id가 smarteditor인 textarea에 에디터에서 대입
+        obj.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);
+        //폼 submit
+        $("#insertBoardFrm").submit();
+    });
 	var i=0;
 	$("#add").click(function(){
 		var ex=$("#ex").html();
@@ -64,14 +88,14 @@ display: none;}
 <body>
 <h1>${board }Write</h1>
 
-<form action="${board }Write" method="post" enctype="multipart/form-data">
+<form action="${board }Write" method="post" id="insertBoardFrm" enctype="multipart/form-data">
 <p>TITLE : <input type="text" name="title"></p>
 <p>WRITER : <input type="text" name="writer"></p>
-<p>CONTENTS : <textarea rows="" cols="" name="contents"></textarea></p>
+<p>CONTENTS : <textarea rows="" cols="" name="contents" id="contents"></textarea></p>
 <p><input type="button" value="fileadd" id="add"></p>
 <div id="result">
 </div>
-<button>Write</button>
+<button id="insertBoard">Write</button>
 </form>
 <div id="ex">
 <p><input type="file" name="file"><span class="X">X</span></p>
