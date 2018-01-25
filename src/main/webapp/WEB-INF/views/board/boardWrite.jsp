@@ -30,7 +30,7 @@ $(function(){
         //id가 smarteditor인 textarea에 에디터에서 대입
         obj.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);
         //폼 submit
-        $("#insertBoardFrm").submit();
+        $("#frm").submit();
     });
 	var i=0;
 	$("#add").click(function(){
@@ -88,14 +88,14 @@ display: none;}
 <body>
 <h1>${board }Write</h1>
 
-<form action="${board }Write" method="post" id="insertBoardFrm" enctype="multipart/form-data">
+<form action="${board }Write" method="post" id="frm" enctype="multipart/form-data">
 <p>TITLE : <input type="text" name="title"></p>
 <p>WRITER : <input type="text" name="writer"></p>
 <p>CONTENTS : <textarea rows="" cols="" name="contents" id="contents"></textarea></p>
 <p><input type="button" value="fileadd" id="add"></p>
 <div id="result">
 </div>
-<button id="insertBoard">Write</button>
+<input type="button" value="Write" id="insertBoard">
 </form>
 <div id="ex">
 <p><input type="file" name="file"><span class="X">X</span></p>

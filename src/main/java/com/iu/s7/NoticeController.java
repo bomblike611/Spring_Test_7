@@ -53,9 +53,6 @@ public class NoticeController {
 	@RequestMapping(value="noticeWrite", method=RequestMethod.POST)
 	public ModelAndView noticeWrite(NoticeDTO noticeDTO,MultipartFile [] file,HttpSession session) throws Exception{
 		ModelAndView mv=new ModelAndView();
-		for(MultipartFile f: noticeDTO.getFile()){
-			System.out.println(f.getOriginalFilename());
-		}
 		
 		
 		int result=noticeService.insert(noticeDTO,file,session);
